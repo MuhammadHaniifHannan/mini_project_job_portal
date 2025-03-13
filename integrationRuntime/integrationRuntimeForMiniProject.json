@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimeForMiniProject",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

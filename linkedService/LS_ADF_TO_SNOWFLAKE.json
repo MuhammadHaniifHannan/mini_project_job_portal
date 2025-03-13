@@ -1,0 +1,21 @@
+{
+	"name": "LS_ADF_TO_SNOWFLAKE",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SnowflakeV2",
+		"typeProperties": {
+			"authenticationType": "Basic",
+			"accountIdentifier": "FJCUGUS-LAB36137",
+			"user": "HANNAN",
+			"database": "JOB_PORTAL",
+			"warehouse": "COMPUTE_WH",
+			"role": "accountadmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjNTRhYTkyYS03MDM4LTQ3OWQtOTcwYS1hZDRlOGExYjhjMWIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeForMiniProject",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

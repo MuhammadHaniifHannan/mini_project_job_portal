@@ -1,0 +1,17 @@
+{
+	"name": "JOB_PORTAL_LOCAL_DATASET",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_local_to_azure",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "country"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
