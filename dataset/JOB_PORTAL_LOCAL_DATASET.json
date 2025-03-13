@@ -5,12 +5,20 @@
 			"referenceName": "SQL_local_to_azure",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"eachName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "country"
+			"schema": "",
+			"table": {
+				"value": "@dataset().eachName",
+				"type": "Expression"
+			}
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
