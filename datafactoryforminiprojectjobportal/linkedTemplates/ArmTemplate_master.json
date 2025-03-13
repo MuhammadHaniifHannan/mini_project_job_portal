@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "datafactoryforminiprojectjobportal"
+		},
+		"LS_ADF_TO_SNOWFLAKE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_ADF_TO_SNOWFLAKE'"
+		},
+		"SQL_local_to_azure_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SQL_local_to_azure'"
+		},
+		"LS_ADF_TO_SNOWFLAKE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "JOB_PORTAL"
+		},
+		"LS_ADF_TO_SNOWFLAKE_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "accountadmin"
+		},
+		"LS_BLOB_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'LS_BLOB'"
+		},
+		"SQL_local_to_azure_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "JM-DKT-020"
+		},
+		"SQL_local_to_azure_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "mini_project"
+		},
+		"SQL_local_to_azure_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "datafactoryforminiprojectjobportal_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_ADF_TO_SNOWFLAKE_password": {
+						"value": "[parameters('LS_ADF_TO_SNOWFLAKE_password')]"
+					},
+					"SQL_local_to_azure_password": {
+						"value": "[parameters('SQL_local_to_azure_password')]"
+					},
+					"LS_ADF_TO_SNOWFLAKE_properties_typeProperties_database": {
+						"value": "[parameters('LS_ADF_TO_SNOWFLAKE_properties_typeProperties_database')]"
+					},
+					"LS_ADF_TO_SNOWFLAKE_properties_typeProperties_role": {
+						"value": "[parameters('LS_ADF_TO_SNOWFLAKE_properties_typeProperties_role')]"
+					},
+					"LS_BLOB_sasUri": {
+						"value": "[parameters('LS_BLOB_sasUri')]"
+					},
+					"SQL_local_to_azure_properties_typeProperties_server": {
+						"value": "[parameters('SQL_local_to_azure_properties_typeProperties_server')]"
+					},
+					"SQL_local_to_azure_properties_typeProperties_database": {
+						"value": "[parameters('SQL_local_to_azure_properties_typeProperties_database')]"
+					},
+					"SQL_local_to_azure_properties_typeProperties_userName": {
+						"value": "[parameters('SQL_local_to_azure_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
