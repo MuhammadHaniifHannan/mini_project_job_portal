@@ -32,23 +32,16 @@
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "SqlServerSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"type": "SnowflakeV2Sink",
+									"importSettings": {
+										"type": "SnowflakeImportCopyCommand"
+									}
 								},
 								"enableStaging": true,
 								"stagingSettings": {
 									"linkedServiceName": {
 										"referenceName": "LS_BLOB",
 										"type": "LinkedServiceReference"
-									}
-								},
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
 									}
 								}
 							},
@@ -66,7 +59,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "JOB_PORTAL_LOCAL_DATASET",
+									"referenceName": "SNOWFLAKE_DATASET",
 									"type": "DatasetReference",
 									"parameters": {
 										"eachName": {
