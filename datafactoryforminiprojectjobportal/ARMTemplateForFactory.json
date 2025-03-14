@@ -80,23 +80,16 @@
 											"partitionOption": "None"
 										},
 										"sink": {
-											"type": "SqlServerSink",
-											"writeBehavior": "insert",
-											"sqlWriterUseTableLock": false
+											"type": "SnowflakeV2Sink",
+											"importSettings": {
+												"type": "SnowflakeImportCopyCommand"
+											}
 										},
 										"enableStaging": true,
 										"stagingSettings": {
 											"linkedServiceName": {
 												"referenceName": "LS_BLOB",
 												"type": "LinkedServiceReference"
-											}
-										},
-										"translator": {
-											"type": "TabularTranslator",
-											"typeConversion": true,
-											"typeConversionSettings": {
-												"allowDataTruncation": true,
-												"treatBooleanAsNumber": false
 											}
 										}
 									},
@@ -114,7 +107,7 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "JOB_PORTAL_LOCAL_DATASET",
+											"referenceName": "SNOWFLAKE_DATASET",
 											"type": "DatasetReference",
 											"parameters": {
 												"eachName": {
@@ -148,6 +141,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/JOB_PORTAL_LOCAL_DATASET')]",
+				"[concat(variables('factoryId'), '/datasets/SNOWFLAKE_DATASET')]",
 				"[concat(variables('factoryId'), '/linkedServices/LS_BLOB')]"
 			]
 		},
@@ -189,12 +183,20 @@
 					"referenceName": "LS_ADF_TO_SNOWFLAKE",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"eachName": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "SnowflakeV2Table",
 				"schema": [],
 				"typeProperties": {
-					"schema": "STAGING",
-					"table": "COUNTRY"
+					"schema": "RAW",
+					"table": {
+						"value": "@dataset().eachName",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [
